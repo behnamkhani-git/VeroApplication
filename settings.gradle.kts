@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Vero Application"
 include(":app")
- 
+include(":common")
