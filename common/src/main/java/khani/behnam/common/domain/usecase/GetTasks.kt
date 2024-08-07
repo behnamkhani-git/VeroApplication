@@ -1,6 +1,6 @@
-package khani.behnam.common.data.domain.usecase
+package khani.behnam.common.domain.usecase
 
-import khani.behnam.common.data.domain.repository.TaskRepository
+import khani.behnam.common.domain.repository.TaskRepository
 import javax.inject.Inject
 
 class GetTasks @Inject constructor(

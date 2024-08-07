@@ -1,6 +1,6 @@
-package khani.behnam.common.data.domain.repository
+package khani.behnam.common.domain.repository
 
-import khani.behnam.common.data.domain.model.Task
+import khani.behnam.common.domain.model.Task
 import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {

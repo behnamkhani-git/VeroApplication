@@ -1,4 +1,4 @@
-package khani.behnam.common.data.domain.model
+package khani.behnam.common.domain.model
 
 data class Task (
     val task: String,

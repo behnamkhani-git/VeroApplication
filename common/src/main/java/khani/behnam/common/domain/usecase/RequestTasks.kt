@@ -1,8 +1,8 @@
-package khani.behnam.common.data.domain.usecase
+package khani.behnam.common.domain.usecase
 
-import khani.behnam.common.data.domain.model.Task
-import khani.behnam.common.data.domain.repository.TaskRepository
-import khani.behnam.common.data.domain.util.DispatchersProvider
+import khani.behnam.common.domain.model.Task
+import khani.behnam.common.domain.repository.TaskRepository
+import khani.behnam.common.domain.util.DispatchersProvider
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
