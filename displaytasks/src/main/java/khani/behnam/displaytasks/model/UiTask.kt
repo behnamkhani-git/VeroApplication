@@ -1,6 +1,6 @@
 package khani.behnam.displaytasks.model
 
-class UITask(
+class UiTask(
     val task: String,
     val title: String,
     val description: String,
