@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -34,10 +38,45 @@ android {
 
 dependencies {
 
+    implementation(project(":common"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Network
+    implementation (libs.retrofit)
+    implementation (libs.converter.moshi)
+    implementation (libs.okhttp.v493)
+    implementation (libs.logging.interceptor)
+    implementation (libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
+
+    // DI
+    implementation (libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
+    // Cache
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.androidx.room.ktx)
+    ksp (libs.androidx.room.compiler)
+
+    // DI
+    implementation (libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+
+    // UI
+    implementation(libs.glide.v4142)
+    ksp(libs.ksp)
+    implementation (libs.material)
+
+    // Navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.fragment.ktx)
 }
