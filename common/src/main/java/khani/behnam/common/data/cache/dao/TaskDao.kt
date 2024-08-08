@@ -5,14 +5,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import kotlinx.coroutines.flow.Flow
 import khani.behnam.common.data.cache.model.CachedTask
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class TaskDao {
 
     @Transaction
-    @Query("SELECT * FROM tasks")
+    @Query("SELECT * FROM tasks ORDER BY task")
     abstract fun getAllTasks(): Flow<List<CachedTask>>
 
     @Query("SELECT * FROM tasks WHERE task LIKE '%' || :searchQuery || '%' " +
@@ -26,7 +26,7 @@ abstract class TaskDao {
             "OR preplanningBoardQuickSelect LIKE '%' || :searchQuery || '%'" +
             "OR colorCode LIKE '%' || :searchQuery || '%'" +
             "OR workingTime LIKE '%' || :searchQuery || '%'" +
-            "OR isAvailableInTimeTrackingKioskMode LIKE '%' || :searchQuery || '%'")
+            "OR isAvailableInTimeTrackingKioskMode LIKE '%' || :searchQuery || '%' ORDER BY task")
     abstract suspend fun searchTasks(searchQuery: String): List<CachedTask>
 
 
