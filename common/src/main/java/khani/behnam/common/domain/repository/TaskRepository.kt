@@ -7,4 +7,6 @@ interface TaskRepository {
     suspend fun getTasks(): Flow<List<Task>>
     suspend fun requestTasks(): List<Task>
     suspend fun storeTasks(tasks: List<Task>)
+    suspend fun searchTasks(searchQuery: String): List<Task>
+
 }
