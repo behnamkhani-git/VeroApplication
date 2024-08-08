@@ -1,6 +1,6 @@
-package khani.behnam.displaytasks.viewstate
+package khani.behnam.displaytasks.presentation.viewstate
 
-import khani.behnam.displaytasks.event.Event
+import khani.behnam.displaytasks.presentation.event.Event
 import khani.behnam.displaytasks.model.UiTask
 
 data class TaskViewState(

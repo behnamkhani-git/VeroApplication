@@ -1,4 +1,4 @@
-package khani.behnam.displaytasks.viewmodel
+package khani.behnam.displaytasks.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,11 +7,11 @@ import khani.behnam.common.domain.usecase.GetTasks
 import khani.behnam.common.domain.usecase.RequestTasks
 import khani.behnam.common.domain.usecase.SearchTasks
 import khani.behnam.common.domain.util.createExceptionHandler
-import khani.behnam.displaytasks.event.Event
-import khani.behnam.displaytasks.event.TaskEvent
+import khani.behnam.displaytasks.presentation.event.Event
+import khani.behnam.displaytasks.presentation.event.TaskEvent
 import khani.behnam.displaytasks.model.UiTask
 import khani.behnam.displaytasks.model.mapper.UiTaskMapper
-import khani.behnam.displaytasks.viewstate.TaskViewState
+import khani.behnam.displaytasks.presentation.viewstate.TaskViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,4 +1,4 @@
-package khani.behnam.displaytasks.event
+package khani.behnam.displaytasks.presentation.event
 
 sealed class TaskEvent {
     object RequestInitialTasks: TaskEvent()

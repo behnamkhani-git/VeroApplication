@@ -1,4 +1,4 @@
-package khani.behnam.displaytasks.event
+package khani.behnam.displaytasks.presentation.event
 
 data class Event<out T>(private val content: T) {
     private var hasBeenHandled = false
