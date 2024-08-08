@@ -41,7 +41,9 @@ class TasksViewModel @Inject constructor(
 
     fun onEvent(event: TaskEvent) {
         when (event) {
-            is TaskEvent.RequestInitialTasks ->
+            is TaskEvent.RequestInitialTasks,
+                is TaskEvent.SwipeToRefresh
+            ->
                 loadTasks()
             is TaskEvent.SearchTasks ->
                 if (event.searchQuery.isEmpty()){

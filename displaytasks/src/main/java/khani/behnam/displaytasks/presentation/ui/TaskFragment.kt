@@ -57,7 +57,7 @@ class TaskFragment : Fragment() {
 
     private fun setupSwipeToRefresh() {
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.onEvent(TaskEvent.RequestInitialTasks)
+            viewModel.onEvent(TaskEvent.SwipeToRefresh)
             binding.swipeRefreshLayout.isRefreshing = false
         }
     }
