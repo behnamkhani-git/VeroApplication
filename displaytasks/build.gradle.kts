@@ -83,6 +83,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
 
+    // Swipe to refresh
     implementation(libs.androidx.swiperefreshlayout)
 
+    // Work manager
+    implementation (libs.androidx.work.runtime.ktx)
 }
