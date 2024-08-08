@@ -50,7 +50,7 @@
             app:layout_constraintTop_toBottomOf="@id/textViewTitle"
             tools:text="Description" />
 
-        <khani.behnam.displaytasks.customview.ColorView
+        <khani.behnam.displaytasks.presentation.customview.ColorView
             android:id="@+id/colorView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
