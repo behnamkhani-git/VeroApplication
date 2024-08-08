@@ -2,19 +2,23 @@ package khani.behnam.veroapplication
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import khani.behnam.common.shared.SharedViewModel
 import khani.behnam.veroapplication.databinding.ActivityMainBinding
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var sharedViewModel: SharedViewModel
     private lateinit var binding: ActivityMainBinding
-
+    private var searchView: SearchView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,10 +33,31 @@ class MainActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(binding.toolbar)
+        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if (searchView != null) return true
         menuInflater.inflate(R.menu.main_menu, menu)
+
+        searchView = menu?.findItem(R.id.action_search)?.actionView as? SearchView
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                sharedViewModel.setText(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                    if (newText.isEmpty()){
+                        sharedViewModel.setText("")
+                    }else{
+                        sharedViewModel.setText(newText)
+                    }
+                return true
+            }
+        })
+
         return true
     }
 

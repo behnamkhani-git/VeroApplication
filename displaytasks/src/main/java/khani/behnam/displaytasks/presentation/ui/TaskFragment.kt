@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import khani.behnam.common.shared.SharedViewModel
 import khani.behnam.displaytasks.R
 import khani.behnam.displaytasks.databinding.FragmentTaskBinding
 import khani.behnam.displaytasks.presentation.adapter.TasksAdapter
@@ -26,6 +29,7 @@ import kotlinx.coroutines.launch
 class TaskFragment : Fragment() {
 
     private val viewModel: TasksViewModel by viewModels()
+    private lateinit var sharedViewModel: SharedViewModel
 
     private var _binding: FragmentTaskBinding? = null
     private val binding get() = _binding!!
@@ -45,8 +49,17 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupShared()
         setupUI()
         requestTasksList()
+    }
+
+    private fun setupShared() {
+        sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+
+        sharedViewModel.sharedText.observe(viewLifecycleOwner, Observer { searchQuery ->
+            viewModel.onEvent(TaskEvent.SearchTasks(searchQuery))
+        })
     }
 
     private fun requestTasksList() {

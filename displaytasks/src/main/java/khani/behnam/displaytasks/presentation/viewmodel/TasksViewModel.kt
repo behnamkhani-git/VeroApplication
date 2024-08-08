@@ -44,7 +44,11 @@ class TasksViewModel @Inject constructor(
             is TaskEvent.RequestInitialTasks ->
                 loadTasks()
             is TaskEvent.SearchTasks ->
-                searchOnTasks(event.searchQuery)
+                if (event.searchQuery.isEmpty()){
+                    observeViewStateChanges()
+                }else{
+                    searchOnTasks(event.searchQuery)
+                }
         }
     }
 
@@ -78,8 +82,6 @@ class TasksViewModel @Inject constructor(
     }
 
     private fun onNewTaskList(tasks: List<UiTask>) {
-        //val updatedTasksSet = (state.value.tasks + tasks).toSet()
-
         _state.update { oldState ->
             oldState.copy(
                 loading = false,
