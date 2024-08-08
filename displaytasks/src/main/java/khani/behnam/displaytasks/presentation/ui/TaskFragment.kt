@@ -52,6 +52,14 @@ class TaskFragment : Fragment() {
         setupShared()
         setupUI()
         requestTasksList()
+        setupSwipeToRefresh()
+    }
+
+    private fun setupSwipeToRefresh() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.onEvent(TaskEvent.RequestInitialTasks)
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun setupShared() {
@@ -66,7 +74,7 @@ class TaskFragment : Fragment() {
         if (viewModel.state.value.tasks.isEmpty()) {
             viewModel.onEvent(TaskEvent.RequestInitialTasks)
         }
-        }
+    }
 
     private fun setupUI() {
         val adapter = createAdapter()
