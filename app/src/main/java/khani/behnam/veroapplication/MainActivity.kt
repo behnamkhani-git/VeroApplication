@@ -1,8 +1,10 @@
 package khani.behnam.veroapplication
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +28,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
+        setSupportActionBar(binding.toolbar)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
 }
