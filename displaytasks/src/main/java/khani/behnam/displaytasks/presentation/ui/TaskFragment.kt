@@ -53,7 +53,7 @@ class TaskFragment : Fragment() {
         if (viewModel.state.value.tasks.isEmpty()) {
             viewModel.onEvent(TaskEvent.RequestInitialTasks)
         }
-    }
+        }
 
     private fun setupUI() {
         val adapter = createAdapter()
@@ -91,8 +91,8 @@ class TaskFragment : Fragment() {
 
     private fun updateScreenState(state: TaskViewState, adapter: TasksAdapter) {
         binding.progressBar.isVisible = state.loading
-        adapter.submitList(state.tasks)
 
+        adapter.submitList(state.tasks)
         handleFailures(state.exception)
     }
 

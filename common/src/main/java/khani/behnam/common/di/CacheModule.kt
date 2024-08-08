@@ -22,31 +22,31 @@ abstract class CacheModule {
     abstract fun bindCache(cache: RoomCache): Cache
 
     companion object {
-        @Provides
-        @Singleton
-        fun provideDatabase(
-            @ApplicationContext context: Context,
-        ): TaskDatabase {
-            return Room.databaseBuilder(
-                context,
-                TaskDatabase::class.java,
-                "tasks.db"
-            )
-                .build()
-        }
-
 //        @Provides
 //        @Singleton
-//        fun provideDatabaseInMemory(
+//        fun provideDatabase(
 //            @ApplicationContext context: Context,
-//        ): UnboxdDatabase {
-//            return Room.inMemoryDatabaseBuilder(
+//        ): TaskDatabase {
+//            return Room.databaseBuilder(
 //                context,
-//                UnboxdDatabase::class.java,
+//                TaskDatabase::class.java,
+//                "tasks.db"
 //            )
-//
 //                .build()
 //        }
+
+        @Provides
+        @Singleton
+        fun provideDatabaseInMemory(
+            @ApplicationContext context: Context,
+        ): TaskDatabase {
+            return Room.inMemoryDatabaseBuilder(
+                context,
+                TaskDatabase::class.java,
+            )
+
+                .build()
+        }
 
         @Provides
         fun provideProductsDao(

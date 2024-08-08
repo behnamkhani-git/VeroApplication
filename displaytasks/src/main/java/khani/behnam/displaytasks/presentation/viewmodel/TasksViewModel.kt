@@ -43,7 +43,6 @@ class TasksViewModel @Inject constructor(
         when (event) {
             is TaskEvent.RequestInitialTasks ->
                 loadTasks()
-
             is TaskEvent.SearchTasks ->
                 searchOnTasks(event.searchQuery)
         }
@@ -60,12 +59,12 @@ class TasksViewModel @Inject constructor(
     }
 
     private fun loadTasks() {
-        val errorMessage = "Failed to fetch tasks!"
-        val exceptionHandler =
-            viewModelScope.createExceptionHandler(errorMessage) { onException(it) }
-        viewModelScope.launch(exceptionHandler) {
-            requestTasks()
-        }
+            val errorMessage = "Failed to fetch tasks!"
+            val exceptionHandler =
+                viewModelScope.createExceptionHandler(errorMessage) { onException(it) }
+            viewModelScope.launch(exceptionHandler) {
+                requestTasks()
+            }
     }
 
     private fun observeViewStateChanges() {

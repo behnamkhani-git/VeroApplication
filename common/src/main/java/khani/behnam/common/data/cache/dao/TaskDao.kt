@@ -20,7 +20,7 @@ abstract class TaskDao {
     abstract suspend fun searchTasks(searchQuery: String): List<CachedTask>
 
     @Transaction
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract suspend fun insertTask(task: CachedTask)
 
     suspend fun insertTasks(tasks: List<CachedTask>){
