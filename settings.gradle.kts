@@ -23,3 +23,4 @@ rootProject.name = "Vero Application"
 include(":app")
 include(":common")
 include(":displaytasks")
+include(":qrcodescanner")
