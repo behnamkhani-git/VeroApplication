@@ -1,4 +1,4 @@
-package khani.behnam.common.domain.util
+package khani.behnam.common.util
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

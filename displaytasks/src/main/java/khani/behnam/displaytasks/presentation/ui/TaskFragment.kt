@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import khani.behnam.displaytasks.R
 import khani.behnam.displaytasks.databinding.FragmentTaskBinding
 import khani.behnam.displaytasks.presentation.adapter.TasksAdapter
@@ -21,6 +22,7 @@ import khani.behnam.displaytasks.presentation.viewmodel.TasksViewModel
 import khani.behnam.displaytasks.presentation.viewstate.TaskViewState
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class TaskFragment : Fragment() {
 
     private val viewModel: TasksViewModel by viewModels()

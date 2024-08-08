@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import khani.behnam.common.domain.usecase.GetTasks
 import khani.behnam.common.domain.usecase.RequestTasks
 import khani.behnam.common.domain.usecase.SearchTasks
-import khani.behnam.common.domain.util.createExceptionHandler
+import khani.behnam.common.util.createExceptionHandler
 import khani.behnam.displaytasks.presentation.event.Event
 import khani.behnam.displaytasks.presentation.event.TaskEvent
 import khani.behnam.displaytasks.model.UiTask

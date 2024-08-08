@@ -2,7 +2,7 @@ package khani.behnam.common.domain.usecase
 
 import khani.behnam.common.domain.model.Task
 import khani.behnam.common.domain.repository.TaskRepository
-import khani.behnam.common.domain.util.DispatchersProvider
+import khani.behnam.common.util.DispatchersProvider
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
