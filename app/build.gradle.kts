@@ -61,4 +61,7 @@ dependencies {
     // DI
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+
+    // Work manager
+    implementation (libs.androidx.work.runtime.ktx)
 }
