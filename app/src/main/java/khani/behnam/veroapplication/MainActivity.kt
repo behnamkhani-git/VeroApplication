@@ -83,8 +83,13 @@ class MainActivity : AppCompatActivity(), QRCodeScanResultCallback {
     }
 
     override fun onQRCodeScanResult(result: String?) {
-        searchView?.isIconified = false
-        searchView?.setQuery(result, false)
+        if (result != null) {
+            if (result.isNotEmpty()){
+                searchView?.isIconified = false
+                searchView?.setQuery(result, false)
+            }
+        }
+
     }
 
 }
