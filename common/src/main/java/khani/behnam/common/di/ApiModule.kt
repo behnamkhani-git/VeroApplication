@@ -9,6 +9,10 @@ import khani.behnam.common.data.api.TaskApi
 import khani.behnam.common.data.api.interceptor.AuthenticationInterceptor
 import khani.behnam.common.data.api.interceptor.LoggingInterceptor
 import khani.behnam.common.data.api.interceptor.NetworkStatusInterceptor
+import khani.behnam.common.data.api.model.mapper.ApiTaskMapper
+import khani.behnam.common.data.cache.Cache
+import khani.behnam.common.data.repository.VeroTaskRepository
+import khani.behnam.common.domain.repository.TaskRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,6 +22,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
+
 
     @Provides
     @Singleton
