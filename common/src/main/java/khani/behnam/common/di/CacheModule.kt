@@ -8,10 +8,13 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import khani.behnam.common.data.api.TaskApi
 import khani.behnam.common.data.cache.Cache
 import khani.behnam.common.data.cache.RoomCache
 import khani.behnam.common.data.cache.TaskDatabase
 import khani.behnam.common.data.cache.dao.TaskDao
+import khani.behnam.common.data.repository.VeroTaskRepository
+import khani.behnam.common.domain.repository.TaskRepository
 import javax.inject.Singleton
 
 @Module
@@ -22,31 +25,34 @@ abstract class CacheModule {
     abstract fun bindCache(cache: RoomCache): Cache
 
     companion object {
+        @Provides
+        @Singleton
+        fun provideDatabase(
+            @ApplicationContext context: Context,
+        ): TaskDatabase {
+            return Room.databaseBuilder(
+                context,
+                TaskDatabase::class.java,
+                "tasks.db"
+            )
+                .build()
+        }
+
 //        @Provides
 //        @Singleton
-//        fun provideDatabase(
+//        fun provideDatabaseInMemory(
 //            @ApplicationContext context: Context,
 //        ): TaskDatabase {
-//            return Room.databaseBuilder(
+//            return Room.inMemoryDatabaseBuilder(
 //                context,
 //                TaskDatabase::class.java,
-//                "tasks.db"
 //            )
+//
 //                .build()
 //        }
 
-        @Provides
-        @Singleton
-        fun provideDatabaseInMemory(
-            @ApplicationContext context: Context,
-        ): TaskDatabase {
-            return Room.inMemoryDatabaseBuilder(
-                context,
-                TaskDatabase::class.java,
-            )
 
-                .build()
-        }
+
 
         @Provides
         fun provideProductsDao(
