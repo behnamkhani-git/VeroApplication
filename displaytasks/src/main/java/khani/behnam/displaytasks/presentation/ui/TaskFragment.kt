@@ -13,6 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import khani.behnam.common.shared.SharedViewModel
@@ -23,10 +30,14 @@ import khani.behnam.displaytasks.presentation.event.Event
 import khani.behnam.displaytasks.presentation.event.TaskEvent
 import khani.behnam.displaytasks.presentation.viewmodel.TasksViewModel
 import khani.behnam.displaytasks.presentation.viewstate.TaskViewState
+import khani.behnam.displaytasks.worker.ResourceUpdateWorker
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class TaskFragment : Fragment() {
+
+    private lateinit var workManager: WorkManager
 
     private val viewModel: TasksViewModel by viewModels()
     private lateinit var sharedViewModel: SharedViewModel
@@ -53,6 +64,39 @@ class TaskFragment : Fragment() {
         setupUI()
         requestTasksList()
         setupSwipeToRefresh()
+        setupTaskUpdateWorker()
+    }
+
+    private fun setupTaskUpdateWorker() {
+        workManager = WorkManager.getInstance(requireContext())
+        val request = PeriodicWorkRequestBuilder<ResourceUpdateWorker>(60, TimeUnit.MINUTES)
+
+            .setConstraints(Constraints(
+                requiresBatteryNotLow = true,
+                requiredNetworkType = NetworkType.CONNECTED))
+            .build()
+
+        workManager.enqueueUniquePeriodicWork(
+            "TaskUpdateWorker",
+            ExistingPeriodicWorkPolicy.KEEP,
+            request
+        )
+    }
+
+    private fun setupTaskUpdateWorkerTest() {
+        workManager = WorkManager.getInstance(requireContext())
+
+        val request = OneTimeWorkRequestBuilder<ResourceUpdateWorker>()
+
+            .setConstraints(Constraints(
+                requiresBatteryNotLow = true,
+                requiredNetworkType = NetworkType.CONNECTED))
+            .setInitialDelay(60, TimeUnit.SECONDS)
+            .build()
+
+        workManager.enqueue(
+            request
+        )
     }
 
     private fun setupSwipeToRefresh() {
